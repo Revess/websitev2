@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <!-- <script src="https://github.com/juliangarnier/anime/blob/master/lib/anime.min.js"></script> -->
+</head>
+
+<body onload="set_circle()">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12 p-0" style="height:100vh;" id="background">
+        <canvas class="main_menu" id="main_menu"> </canvas>
+      </div>
+      <div class="col-12 p-0 title_container page_container" id="title_screen" style="display: flex;">
+        <a href="#">
+          <canvas class="title_animation" id="title_animation"> </canvas>
+          <h1 id="title" class="title" style="font-size:2.5rem;">Bas Maat</h1>
+        </a>
+        <div id="svg_rot-0" class="svg_rot">
+          <a onclick="open_page('skills')">
+            <img src="./assets/svg/NAV_CURVE.svg" class="svg_quarter">
+          </a>
+          <div>
+            skills
+          </div>
+        </div>
+        <div id="svg_rot-60" class="svg_rot">
+          <a>
+            <img src="./assets/svg/NAV_CURVE.svg" class="svg_quarter">
+          </a>
+          <div>
+            projects
+          </div>
+        </div>
+        <div id="svg_rot-120" class="svg_rot">
+          <a>
+            <img src="./assets/svg/NAV_CURVE.svg" class="svg_quarter">
+          </a>
+          <div>
+            papers
+          </div>
+        </div>
+        <div id="svg_rot-180" class="svg_rot">
+          <a>
+            <img src="./assets/svg/NAV_CURVE.svg" class="svg_quarter">
+          </a>
+          <div>
+            about
+          </div>
+        </div>
+        <div id="svg_rot-240" class="svg_rot">
+          <a>
+            <img src="./assets/svg/NAV_CURVE.svg" class="svg_quarter">
+          </a>
+          <div>
+            contact
+          </div>
+        </div>
+        <div id="svg_rot-300" class="svg_rot">
+          <a>
+            <img src="./assets/svg/NAV_CURVE.svg" class="svg_quarter">
+          </a>
+          <div>
+            more
+          </div>
+        </div>
+      </div>
+      <div class="col-12 p-0 page_container" id="skills" style="display: none;">
+        sss
+      </div>
+</body>
+<link rel="stylesheet" href="./css/style.css">
+<script src="./js/animation.js"></script>
+<script src="./js/draw_title_circle.js"></script>
+<script src="./js/button_functions.js"></script>
+
+</html>
