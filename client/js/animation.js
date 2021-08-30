@@ -6,9 +6,29 @@ var unlock_hover = true;
 const num_particles = Math.round(175 * ((Math.random() / 2) + 0.5));
 const particle_distance = Math.round(175 * ((Math.random() / 4) + 0.75));
 const radius = 3;
+const max_speed = 2;
+const gravity_on = true;
+const pages = {
+    "skills": document.getElementById("skills"),
+    "title_screen": document.getElementById("title_screen"),
+    "about": document.getElementById("about"),
+    "projects": document.getElementById("projects"),
+    "papers": document.getElementById("papers"),
+    "contact": document.getElementById("contact"),
+}
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+function setCanvas() {
+    for (key in pages) {
+        if (pages[key].style.display !== "none") {
+            canvas.width = pages[key].getBoundingClientRect().width;
+            canvas.height = pages[key].getBoundingClientRect().height;
+            canvas.style.width = pages[key].getBoundingClientRect().width + "px";
+            canvas.style.height = pages[key].getBoundingClientRect().height + "px";
+        }
+    }
+}
+
+setCanvas();
 
 function find_distance(a, b) {
     let x = Math.abs(a.x - b.x);
@@ -51,12 +71,12 @@ class Vector {
 
 class Particle {
     constructor(x, y) {
-        this.radius = radius;
+        this.radius = (radius - 1) * (Math.random() + 1);
         this.x = x;
         this.y = y;
-        this.vx = (Math.random() - 0.5);
-        this.vy = (Math.random() - 0.5);
-        this.gravity = Math.random();
+        this.vx = ((Math.random() * 4) - 0.5);
+        this.vy = ((Math.random() * 4) - 0.5);
+        this.gravity = Math.random() * 5;
         this.Color = "rgba(255, 255, 255, " + ((Math.random() / 2) + 0.5) + ")";
         this.name = makeid(5);
     }
@@ -82,6 +102,47 @@ class Particle {
         } else if (this.y + this.radius >= canvas.height) {
             this.vy = -Math.abs(this.vy);
         }
+
+        particles.forEach(new_particle => {
+            if (this.name !== new_particle.name && new_particle.x < (this.x + particle_distance) && new_particle.x > (this.x - particle_distance) && new_particle.y < (this.y + particle_distance) && new_particle.y > (this.y - particle_distance)) {
+                if ((this.x + this.radius) >= (new_particle.x - new_particle.radius) && (this.x + this.radius) < (new_particle.x + new_particle.radius) && (this.y + this.radius) >= (new_particle.y - new_particle.radius) && (this.y + this.radius) < (new_particle.y + new_particle.radius)) {
+                    this.vx -= new_particle.vx * (this.radius / radius) * (Math.random() * 0.);
+                    this.vy -= new_particle.vy * (this.radius / radius) * (Math.random() * 0.5);
+                }
+                //The distance calulations
+                let vector_name = this.name + "_" + new_particle.name;
+                let rev_name = new_particle.name + "_" + this.name
+                let distance = find_distance(this, new_particle);
+                if (distance <= particle_distance) {
+                    if (!(vector_name in vectors) && !(rev_name in vectors)) {
+                        vectors[vector_name] = new Vector();
+                        vectors[vector_name].start = this.name;
+                        vectors[vector_name].end = new_particle.name;
+                    } else if (vector_name in vectors) {
+                        vectors[vector_name].Draw([this.x, this.y], [new_particle.x, new_particle.y], 1 - (distance / particle_distance));
+                    }
+                    if (gravity_on) {
+                        this.vx -= ((((this.x - new_particle.x) / canvas.width) / particle_distance) * new_particle.gravity * (this.radius / radius));
+                        this.vy -= ((((this.y - new_particle.y) / canvas.height) / particle_distance) * new_particle.gravity * (this.radius / radius));
+                        if (this.vx > max_speed) {
+                            this.vx -= 0.5
+                        }
+                        if (this.vy > max_speed) {
+                            this.vy -= 0.5
+                        }
+                        if (Math.random > 0.3) {
+                            this.vx += (Math.random() * 2) - 1
+                        }
+                        if (Math.random > 0.5) {
+                            this.vy += (Math.random() * 2) - 1
+                        }
+                    }
+                } else {
+                    delete vectors[vector_name]
+                }
+
+            }
+        });
     }
 }
 
@@ -108,51 +169,30 @@ function hover_particle_animation(angle) {
 }
 
 function loop() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    let w = canvas.width;
-    let h = canvas.height;
-    let number_of_buttons = 6;
-    let button_angle = 360 / number_of_buttons;
-    let circle_id = "svg_rot-"
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    //draw a single particle
-    particles.forEach(particle => {
-        particle.Update();
-        particle.Draw(ctx);
-    });
-
-    //find vector and draw them
-    particles.forEach(particle => {
-        particles.forEach(new_particle => {
-            if (particle.name !== new_particle.name) {
-                let vector_name = particle.name + "_" + new_particle.name;
-                let rev_name = new_particle.name + "_" + particle.name
-                let distance = find_distance(particle, new_particle);
-                if (distance <= particle_distance) {
-                    if (!(vector_name in vectors) && !(rev_name in vectors)) {
-                        vectors[vector_name] = new Vector();
-                        vectors[vector_name].start = particle.name;
-                        vectors[vector_name].end = new_particle.name;
-                    } else if (vector_name in vectors) {
-                        vectors[vector_name].Draw([particle.x, particle.y], [new_particle.x, new_particle.y], 1 - (distance / particle_distance));
-                    }
-                } else {
-                    delete vectors[vector_name]
-                }
-            }
+    setCanvas();
+    if (window.innerWidth > 600) {
+        let w = canvas.width;
+        let h = canvas.height;
+        let number_of_buttons = 6;
+        let button_angle = 360 / number_of_buttons;
+        let circle_id = "svg_rot-"
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        //draw a single particle
+        particles.forEach(particle => {
+            particle.Update();
+            particle.Draw(ctx);
         });
-    });
 
-    if (unlock_hover) {
-        for (i = 0; i < number_of_buttons; i++) {
-            //set the new elements and its wrappers
-            let angle = i * button_angle;
-            let svg_holder = document.getElementById(circle_id + angle)
-            if (svg_holder.matches(':hover')) {
-                unlock_hover = false;
-                hover_particle_animation(angle)
-                break;
+        if (unlock_hover) {
+            for (i = 0; i < number_of_buttons; i++) {
+                //set the new elements and its wrappers
+                let angle = i * button_angle;
+                let svg_holder = document.getElementById(circle_id + angle)
+                if (svg_holder.matches(':hover')) {
+                    unlock_hover = false;
+                    hover_particle_animation(angle + 45)
+                    break;
+                }
             }
         }
     }

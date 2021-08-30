@@ -39,15 +39,32 @@ body {
   background: rgba(83, 83, 83, 0);
 }
 
-.page_container {
+.title_container {
   position: absolute;
   height: 100vh;
+}
+
+.page_container{
+  display:block;
+  position: absolute;
+  height:100%;
 }
 
 .title_container .title{
   color: white;
   position: absolute;
   top: 50%;
+  left: 50%;
+  display:block;
+  margin: auto;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.subtitle {
+  color: white;
+  position: absolute;
+  top: 59%;
   left: 50%;
   display:block;
   margin: auto;
@@ -86,4 +103,25 @@ body {
 #svg_rot-120:hover div, #svg_rot-180:hover div, 
 #svg_rot-240:hover div, #svg_rot-300:hover div{
   color: rgba(0, 0, 0, 1);
+}
+
+.pagesettings {
+  background: white;
+  height:100%;
+}
+
+.icon {
+  font-size: 0.5rem;
+}
+
+.icons {
+  color: rgb(61, 61, 61);
+  text-decoration: none; 
+  transition: all .5s ease-in-out;
+}
+
+.icons:hover{
+  color: black;
+  text-decoration: none;
+  transform: scale(1.05);
 }
