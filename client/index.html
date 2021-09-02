@@ -9,16 +9,28 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <!-- <script src="https://github.com/juliangarnier/anime/blob/master/lib/anime.min.js"></script> -->
+  <script src="https://unpkg.com/tone"></script>
 </head>
 
 <body onload="set_circle()">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-12 p-0" style="height: 100%;width:100%; position: absolute;" id="background">
+      <div class="col-12 p-0 " id="unmute" style="display: block; background: white; height: 100vh;">
+        <div class="speaker_icon" style="margin-top: 40vh;">
+          <span>Unmute to view</span>
+        </div>
+        <div class="speaker_icon pt-4">
+          <a onclick="unmute()" style="font-size: 1rem;">
+            <i class=" fas fa-volume-mute fa-10x" id="muted"></i>
+            <i class="fas fa-volume-up fa-10x" id="unmuted" style="display: none;"></i>
+          </a>
+        </div>
+      </div>
+      <div class="col-12 p-0 page_off" style="height: 100%;width:100%; position: absolute; display: none;"
+        id="background">
         <canvas class="main_menu" id="main_menu"> </canvas>
       </div>
-      <div class="col-12 p-0 title_container title_container" id="title_screen" style="display: block;">
+      <div class="col-12 p-0 title_container page_off" id="title_screen" style="display: none;">
         <a href="#">
           <h1 id="title" class="title" style="font-size:2.5rem;">Bas Maat</h1>
           <h3 class="subtitle" style="font-size:1.5rem;">Creative Solutions </br>for Creative Problems</h3>
@@ -72,11 +84,20 @@
           </div>
         </div>
       </div>
-      <div class="col-12 p-0 page_container" id="skills" style="display: none;">
+      <div class="col-12 p-0 page_container page_off" id="skills" style="display: none;">
         <div class="container pagesettings ">
           <div class="row pt-5 pb-5">
-            <div class="col-md-12 text-center">
+            <div class="col-md-1">
+            </div>
+            <div class="col-md-1">
+              <a onclick="open_page('title_screen')" style="font-size: 2rem;">
+                <i class="fas fa-arrow-left page_back"></i>
+              </a>
+            </div>
+            <div class="col-md-8 text-center">
               <h1>SKILLS</h1>
+            </div>
+            <div class="col-md-2">
             </div>
           </div>
           <div class="row">
@@ -127,11 +148,20 @@
           </div>
         </div>
       </div>
-      <div class="col-12 p-0 page_container" id="about" style="display: none;">
+      <div class="col-12 p-0 page_container page_off" id="about" style="display: none;">
         <div class="container pagesettings ">
           <div class="row pt-5 pb-5">
-            <div class="col-md-12 text-center">
+            <div class="col-md-1">
+            </div>
+            <div class="col-md-1">
+              <a onclick="open_page('title_screen')" style="font-size: 2rem;">
+                <i class="fas fa-arrow-left page_back"></i>
+              </a>
+            </div>
+            <div class="col-md-8 text-center">
               <h1>ABOUT</h1>
+            </div>
+            <div class="col-md-2">
             </div>
           </div>
           <div class="row">
@@ -152,11 +182,20 @@
           </div>
         </div>
       </div>
-      <div class="col-12 p-0 page_container" id="projects" style="display: none;">
+      <div class="col-12 p-0 page_container page_off" id="projects" style="display: none;">
         <div class="container pagesettings ">
           <div class="row pt-5 pb-5">
-            <div class="col-md-12 text-center">
-              <h1>SKILLS</h1>
+            <div class="col-md-1">
+            </div>
+            <div class="col-md-1">
+              <a onclick="open_page('title_screen')" style="font-size: 2rem;">
+                <i class="fas fa-arrow-left page_back"></i>
+              </a>
+            </div>
+            <div class="col-md-8 text-center">
+              <h1>PROJECTS</h1>
+            </div>
+            <div class="col-md-2">
             </div>
           </div>
           <div class="row">
@@ -207,11 +246,20 @@
           </div>
         </div>
       </div>
-      <div class="col-12 p-0 page_container" id="papers" style="display: none;">
+      <div class="col-12 p-0 page_container page_off" id="papers" style="display: none;">
         <div class="container pagesettings ">
           <div class="row pt-5 pb-5">
-            <div class="col-md-12 text-center">
-              <h1>SKILLS</h1>
+            <div class="col-md-1">
+            </div>
+            <div class="col-md-1">
+              <a onclick="open_page('title_screen')" style="font-size: 2rem;">
+                <i class="fas fa-arrow-left page_back"></i>
+              </a>
+            </div>
+            <div class="col-md-8 text-center">
+              <h1>PAPERS</h1>
+            </div>
+            <div class="col-md-2">
             </div>
           </div>
           <div class="row">
@@ -262,11 +310,20 @@
           </div>
         </div>
       </div>
-      <div class="col-12 p-0 page_container" id="contact" style="display: none;">
+      <div class="col-12 p-0 page_container page_off" id="contact" style="display: none;">
         <div class="container pagesettings ">
           <div class="row pt-5 pb-5">
-            <div class="col-md-12 text-center">
-              <h1>SKILLS</h1>
+            <div class="col-md-1">
+            </div>
+            <div class="col-md-1">
+              <a onclick="open_page('title_screen')" style="font-size: 2rem;">
+                <i class="fas fa-arrow-left page_back"></i>
+              </a>
+            </div>
+            <div class="col-md-8 text-center">
+              <h1>CONTACT</h1>
+            </div>
+            <div class="col-md-2">
             </div>
           </div>
           <div class="row">

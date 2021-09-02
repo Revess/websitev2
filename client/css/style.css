@@ -12,6 +12,7 @@ body {
     background-color: rgb(70, 70, 70);
     font-family: space_mono;
     height:100vh;
+    overflow:hidden;
   }
 
 .nav-link {
@@ -45,7 +46,6 @@ body {
 }
 
 .page_container{
-  display:block;
   position: absolute;
   height:100%;
 }
@@ -124,4 +124,33 @@ body {
   color: black;
   text-decoration: none;
   transform: scale(1.05);
+}
+
+.page_back {
+  transition: all .2s ease-in-out;
+}
+
+.page_back:hover{
+  transform: scale(1.2);
+}
+
+.speaker_icon {
+  text-align: center;
+  justify-content: center;
+}
+
+.volume_button_active {
+  transform: scale(1.1);
+  opacity: 0;
+  transition: all 0.5s ease-in;
+}
+
+.page_off {
+  opacity: 0;
+  transition: all 0.5s ease-in;
+}
+
+.fade_in {
+  opacity: 1;
+  transition: all 0.5s ease-in;
 }

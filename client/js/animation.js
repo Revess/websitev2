@@ -3,11 +3,13 @@ var ctx = canvas.getContext("2d");
 var particles = [];
 var vectors = [];
 var unlock_hover = true;
-const num_particles = Math.round(175 * ((Math.random() / 2) + 0.5));
-const particle_distance = Math.round(175 * ((Math.random() / 4) + 0.75));
+const num_particles = 150
+const particle_distance = 175
+console.log(num_particles, particle_distance)
 const radius = 3;
 const max_speed = 2;
 const gravity_on = true;
+const now = Tone.now();
 const pages = {
     "skills": document.getElementById("skills"),
     "title_screen": document.getElementById("title_screen"),
@@ -76,7 +78,7 @@ class Particle {
         this.y = y;
         this.vx = ((Math.random() * 4) - 0.5);
         this.vy = ((Math.random() * 4) - 0.5);
-        this.gravity = Math.random() * 5;
+        this.gravity = Math.random() * 2.5;
         this.Color = "rgba(255, 255, 255, " + ((Math.random() / 2) + 0.5) + ")";
         this.name = makeid(5);
     }
@@ -170,7 +172,16 @@ function hover_particle_animation(angle) {
 
 function loop() {
     setCanvas();
-    if (window.innerWidth > 600) {
+    if (window.innerWidth > 600 && document.getElementById("background").style.display !== "none") {
+        if (particles.length == 0) {
+            let x = canvas.width * ((Math.random() / 3) + 0.33);
+            let y = canvas.height * ((Math.random() / 3) + 0.33);
+            for (i = 0; i < num_particles; i++) {
+                x = canvas.width * Math.random();
+                y = canvas.height * Math.random();
+                particles.push(new Particle(x, y))
+            }
+        }
         let w = canvas.width;
         let h = canvas.height;
         let number_of_buttons = 6;
@@ -197,14 +208,6 @@ function loop() {
         }
     }
     requestAnimationFrame(loop);
-}
-
-let x = canvas.width * ((Math.random() / 3) + 0.33);
-let y = canvas.height * ((Math.random() / 3) + 0.33);
-for (i = 0; i < num_particles; i++) {
-    x = canvas.width * Math.random();
-    y = canvas.height * Math.random();
-    particles.push(new Particle(x, y))
 }
 
 loop()
