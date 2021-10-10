@@ -3,34 +3,19 @@ var ctx = canvas.getContext("2d");
 var particles = [];
 var vectors = [];
 var unlock_hover = true;
-const num_particles = 150
+var num_particles = Math.round(100 * window.innerHeight / 1181);
 const particle_distance = 175
-console.log(num_particles, particle_distance)
 const radius = 3;
 const max_speed = 2;
 const gravity_on = true;
-const now = Tone.now();
-const pages = {
-    "skills": document.getElementById("skills"),
-    "title_screen": document.getElementById("title_screen"),
-    "about": document.getElementById("about"),
-    "projects": document.getElementById("projects"),
-    "papers": document.getElementById("papers"),
-    "contact": document.getElementById("contact"),
-}
 
 function setCanvas() {
-    for (key in pages) {
-        if (pages[key].style.display !== "none") {
-            canvas.width = pages[key].getBoundingClientRect().width;
-            canvas.height = pages[key].getBoundingClientRect().height;
-            canvas.style.width = pages[key].getBoundingClientRect().width + "px";
-            canvas.style.height = pages[key].getBoundingClientRect().height + "px";
-        }
-    }
+    let window_props = document.getElementById("title_page").getBoundingClientRect();
+    canvas.width = window_props.width;
+    canvas.height = window_props.height;
+    canvas.style.width = window_props.width + "px";
+    canvas.style.height = window_props.height + "px";
 }
-
-setCanvas();
 
 function find_distance(a, b) {
     let x = Math.abs(a.x - b.x);
@@ -171,16 +156,18 @@ function hover_particle_animation(angle) {
 }
 
 function loop() {
+    num_particles = Math.round(100 * window.innerHeight / 1181);
     setCanvas();
-    if (window.innerWidth > 600 && document.getElementById("background").style.display !== "none") {
-        if (particles.length == 0) {
-            let x = canvas.width * ((Math.random() / 3) + 0.33);
-            let y = canvas.height * ((Math.random() / 3) + 0.33);
-            for (i = 0; i < num_particles; i++) {
+    if ($(window).scrollTop() < $("#projects").position().top && document.getElementById("background").style.display !== "none") {
+        if (num_particles > particles.length) {
+            for (i = 0; i < num_particles - particles.length; i++) {
                 x = canvas.width * Math.random();
                 y = canvas.height * Math.random();
                 particles.push(new Particle(x, y))
             }
+        } else if (num_particles < particles.length) {
+            console.log(Math.round(particles.length - num_particles), particles.length)
+            particles.splice(0, Math.round(particles.length - num_particles))
         }
         let w = canvas.width;
         let h = canvas.height;
@@ -194,20 +181,8 @@ function loop() {
             particle.Draw(ctx);
         });
 
-        if (unlock_hover) {
-            for (i = 0; i < number_of_buttons; i++) {
-                //set the new elements and its wrappers
-                let angle = i * button_angle;
-                let svg_holder = document.getElementById(circle_id + angle)
-                if (svg_holder.matches(':hover')) {
-                    unlock_hover = false;
-                    hover_particle_animation(angle + 45)
-                    break;
-                }
-            }
-        }
     }
     requestAnimationFrame(loop);
 }
 
-loop()
+setTimeout(function () { loop() }, 250)

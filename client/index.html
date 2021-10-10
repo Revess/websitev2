@@ -1,3 +1,4 @@
+<!-- TODO: add about section for mobile online, move header text down into an about section. -->
 <!doctype html>
 <html>
 
@@ -9,375 +10,235 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <script src="https://unpkg.com/tone"></script>
 </head>
 
-<body onload="set_circle()">
+<body onload="titleResize()">
+  <nav class="navbar navbar-expand-lg sticky-top navbar_colours navbar navbar-light" id="navbar">
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav ml-auto">
+        <li class="nav-item">
+          <a style="cursor:pointer;" onclick="scrollAnimation('projects')" class="nav-link">Projects </a>
+        </li>
+        <li class="nav-item">
+          <a style="cursor:pointer;" onclick="scrollAnimation('papers')" class="nav-link">Papers</a>
+        </li>
+      </ul>
+    </div>
+
+    <a class="navbar-brand mx-auto" style="cursor:pointer;" onclick="scrollAnimation('title_container')">Bas Maat</a>
+
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target=".navbar-items"
+      aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation"
+      onclick="setTimeout(function(){titleResize();},250)">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-items nav-collapse-only text-center" id="hidden_element" style="transition: 0.2s;">
+      <ul class="nav navbar-nav">
+        <li class="nav-item active">
+          <a style="cursor:pointer;" onclick="scrollAnimation('projects')" class="nav-link">Projects </a>
+        </li>
+        <li class="nav-item">
+          <a style="cursor:pointer;" onclick="scrollAnimation('papers')" class="nav-link">Papers</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="collapse navbar-collapse navbar-items text-center" style="transition: 0.2s;">
+      <ul class="nav navbar-nav mr-auto">
+        <li class="nav-item">
+          <a style="cursor:pointer;" onclick="scrollAnimation('resume')" class="nav-link">Resume</a>
+        </li>
+        <li class="nav-item">
+          <a style="cursor:pointer;" onclick="scrollAnimation('contact')" class="nav-link">Contact</a>
+        </li>
+      </ul>
+    </div>
+
+  </nav>
+
+  <div class="container-fluid" id="title_container" style="position:relative">
+    <div class="row p-0">
+      <div class="col-xl-12 p-0" id="background">
+        <canvas class=" main_menu" id="main_menu"> </canvas>
+      </div>
+      <div class="col-xl-12 title_page p-0 d-block " id="title_page">
+        <div class="title_container text-center" id="title">
+          <img class="img rounded-circle" src="./assets/images/profile.jfif" style="width:20%">
+          <p class="text-warp title">
+            <b>Hi, I am Bas and I am a junior AI Engineer specialized in Audio and Music.</b>
+          </p>
+          <p class="text-warp">
+            I am a masters student in Artificial
+            Intelligence with an Arts bachelor diploma in Music and Technology from the University of the Arts
+            Utrecht.
+            During my studies I have specialized in applying AI in the field of Audio and Music. Besides the fact I
+            am
+            well equipped to apply my knowledge in software engineering in any field possible.
+            I have experience in various programming languages and I am not shy of learning new ones:
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="container-fluid">
     <div class="row">
-      <div class="col-12 p-0 " id="unmute" style="display: block; background: white; height: 100vh;">
-        <div class="speaker_icon" style="margin-top: 40vh;">
-          <span>Unmute to view</span>
-        </div>
-        <div class="speaker_icon pt-4">
-          <a onclick="unmute()" style="font-size: 1rem;">
-            <i class=" fas fa-volume-mute fa-10x" id="muted"></i>
-            <i class="fas fa-volume-up fa-10x" id="unmuted" style="display: none;"></i>
-          </a>
-        </div>
-      </div>
-      <div class="col-12 p-0 page_off" style="height: 100%;width:100%; position: absolute; display: none;"
-        id="background">
-        <canvas class="main_menu" id="main_menu"> </canvas>
-      </div>
-      <div class="col-12 p-0 title_container page_off" id="title_screen" style="display: none;">
-        <a href="#">
-          <h1 id="title" class="title" style="font-size:2.5rem;">Bas Maat</h1>
-          <h3 class="subtitle" style="font-size:1.5rem;">Creative Solutions </br>for Creative Problems</h3>
-        </a>
-        <div id="svg_rot-0" class="svg_rot">
-          <a onclick="open_page('skills')">
-            <img src="./assets/svg/NAV_CURVE.svg" class="svg_quarter">
-          </a>
-          <div>
-            skills
-          </div>
-        </div>
-        <div id="svg_rot-60" class="svg_rot">
-          <a onclick="open_page('about')">
-            <img src="./assets/svg/NAV_CURVE.svg" class="svg_quarter">
-          </a>
-          <div>
-            about
-          </div>
-        </div>
-        <div id="svg_rot-120" class="svg_rot">
-          <a onclick="open_page('projects')">
-            <img src="./assets/svg/NAV_CURVE.svg" class="svg_quarter">
-          </a>
-          <div>
-            projects
-          </div>
-        </div>
-        <div id="svg_rot-180" class="svg_rot">
-          <a onclick="open_page('papers')">
-            <img src="./assets/svg/NAV_CURVE.svg" class="svg_quarter">
-          </a>
-          <div>
-            papers
-          </div>
-        </div>
-        <div id="svg_rot-240" class="svg_rot">
-          <a onclick="open_page('contact')">
-            <img src="./assets/svg/NAV_CURVE.svg" class="svg_quarter">
-          </a>
-          <div>
-            contact
-          </div>
-        </div>
-        <div id="svg_rot-300" class="svg_rot">
-          <a>
-            <img src="./assets/svg/NAV_CURVE.svg" class="svg_quarter">
-          </a>
-          <div>
-            ???
+      <div class="col-xl-12 p-0" id="arrow">
+        <div class="container-fluid pagesettings p-0">
+          <div class="row m-0">
+            <div class="col-md-12 text-center">
+              <a style="cursor:pointer;" onclick="scrollAnimation('projects')"><i
+                  class="fas fa-angle-down fa-3x mx-auto down_arrow"></i></a>
+            </div>
           </div>
         </div>
       </div>
-      <div class="col-12 p-0 page_container page_off" id="skills" style="display: none;">
-        <div class="container pagesettings ">
-          <div class="row pt-5 pb-5">
-            <div class="col-md-1">
-            </div>
-            <div class="col-md-1">
-              <a onclick="open_page('title_screen')" style="font-size: 2rem;">
-                <i class="fas fa-arrow-left page_back"></i>
-              </a>
-            </div>
-            <div class="col-md-8 text-center">
-              <h1>SKILLS</h1>
-            </div>
-            <div class="col-md-2">
-            </div>
-          </div>
+      <div class="col-xl-12 p-0" id="projects">
+        <div class="container-fluid pagesettings">
           <div class="row">
-            <div class="col-md-1">
-            </div>
-            <div class="col-md-3 text-center border border-dark rounded mr-2">
-              <div class="pt-5">
-                <div class="icon">
-                  <i><img src="./assets/svg/Ai icon.svg" style="width:5.5rem;"></i>
-                </div>
-                <h3>
-                  AI
-                </h3>
-                <p>
-                  I am a young professional in developing tools using Artificial Intelligence
-                </p>
-              </div>
-            </div>
-            <div class="col-md-4 text-center border border-dark rounded mr-2">
-              <div class="pt-5">
-                <div class="icon">
-                  <i class="fab fa-uncharted fa-10x"></i>
-                </div>
-                <h3>
-                  Software Engineer
-                </h3>
-                <p>
-                  I am a software engineer in different types of languages
-                </p>
-              </div>
-            </div>
-            <div class="col-md-3 text-center border border-dark rounded mr-2">
-              <div class="pt-5">
-                <div class="icon">
-                  <i class="fas fa-microphone-alt fa-10x"></i>
-                </div>
-                <h3>
-                  Audio
-                </h3>
-                <p>
-                  I am not your typical software enigineer. My full specilization is audio and music.
-
-                </p>
-              </div>
-            </div>
-            <div class="col-md-1">
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-12 p-0 page_container page_off" id="about" style="display: none;">
-        <div class="container pagesettings ">
-          <div class="row pt-5 pb-5">
-            <div class="col-md-1">
-            </div>
-            <div class="col-md-1">
-              <a onclick="open_page('title_screen')" style="font-size: 2rem;">
-                <i class="fas fa-arrow-left page_back"></i>
-              </a>
-            </div>
-            <div class="col-md-8 text-center">
-              <h1>ABOUT</h1>
-            </div>
-            <div class="col-md-2">
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-2">
-            </div>
-            <div class="col-md-8 text-center">
-              <p>
-                I am a creative system designer with two years of experience
-                in the academic. With Artificial Intelligence I create clever
-                and creative solutions for challenging problems.
-              </p>
-              <p>
-                With currently holding an Arts diploma from the University of
-                the Arts Utrecht in Music & Technology, << Improve scentence </p>
-            </div>
-          </div>
-          <div class="col-md-2">
-          </div>
-        </div>
-      </div>
-      <div class="col-12 p-0 page_container page_off" id="projects" style="display: none;">
-        <div class="container pagesettings ">
-          <div class="row pt-5 pb-5">
-            <div class="col-md-1">
-            </div>
-            <div class="col-md-1">
-              <a onclick="open_page('title_screen')" style="font-size: 2rem;">
-                <i class="fas fa-arrow-left page_back"></i>
-              </a>
-            </div>
-            <div class="col-md-8 text-center">
+            <div class="col-md-12 text-center">
               <h1>PROJECTS</h1>
             </div>
-            <div class="col-md-2">
-            </div>
           </div>
           <div class="row">
-            <div class="col-md-1">
-            </div>
-            <div class="col-md-3 text-center border border-dark rounded mr-2">
-              <div class="pt-5">
-                <div class="icon">
-                  <i><img src="./assets/svg/Ai icon.svg" style="width:5.5rem;"></i>
-                </div>
-                <h3>
-                  AI
-                </h3>
-                <p>
-                  I am a young professional in developing tools using Artificial Intelligence
-                </p>
-              </div>
-            </div>
-            <div class="col-md-4 text-center border border-dark rounded mr-2">
-              <div class="pt-5">
-                <div class="icon">
-                  <i class="fab fa-uncharted fa-10x"></i>
-                </div>
-                <h3>
-                  Software Engineer
-                </h3>
-                <p>
-                  I am a software engineer in different types of languages
-                </p>
-              </div>
-            </div>
-            <div class="col-md-3 text-center border border-dark rounded mr-2">
-              <div class="pt-5">
-                <div class="icon">
-                  <i class="fas fa-microphone-alt fa-10x"></i>
-                </div>
-                <h3>
-                  Audio
-                </h3>
-                <p>
-                  I am not your typical software enigineer. My full specilization is audio and music.
+            <div class="slider">
+              <div class="slide-item">
 
-                </p>
               </div>
-            </div>
-            <div class="col-md-1">
             </div>
           </div>
-        </div>
-      </div>
-      <div class="col-12 p-0 page_container page_off" id="papers" style="display: none;">
-        <div class="container pagesettings ">
-          <div class="row pt-5 pb-5">
-            <div class="col-md-1">
-            </div>
-            <div class="col-md-1">
-              <a onclick="open_page('title_screen')" style="font-size: 2rem;">
-                <i class="fas fa-arrow-left page_back"></i>
+          <!-- <div class="row mx-auto text-center justify-content-center">
+            <div id="project_carousel" class="carousel slide" data-interval="false" data-ride="carousel">
+              <ol class="carousel-indicators">
+                <li data-target="#project_carousel" data-slide-to="0" class="active"></li>
+                <li data-target="#project_carousel" data-slide-to="1"></li>
+                <li data-target="#project_carousel" data-slide-to="2"></li>
+              </ol>
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <div class="text-justify carousel_div mx-auto d-block border">
+                    <h3 class="text-center">SETUP Smartlappen Workshop</h3>
+                    <p style="overflow:auto;text-overflow: ellipsis;">
+                      For the compagny <a href="https://www.setup.nl/" target="_blank">SETUP</a> I created a system for
+                      their
+                      workshop.
+                    </p>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <div class="text-justify carousel_div">
+                    <h3 class="text-center">Artificial Dance Music</h3>
+                    <p>
+                      My thesis project
+                    </p>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <div class="text-justify carousel_div">
+                    <h3 class="text-center">Studio.ai</h3>
+                    <p>
+                      Project in collaboration with Daan Wijnhorst
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <a class="carousel-control-prev" href="#project_carousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="carousel-control-next" href="#project_carousel" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
               </a>
             </div>
-            <div class="col-md-8 text-center">
+          </div> -->
+        </div>
+      </div>
+      <div class="col-xl-12 p-0" id="papers">
+        <div class="container-fluid pagesettings secondary">
+          <div class="row">
+            <div class="col-md-12 text-center">
               <h1>PAPERS</h1>
             </div>
-            <div class="col-md-2">
-            </div>
           </div>
-          <div class="row">
-            <div class="col-md-1">
-            </div>
-            <div class="col-md-3 text-center border border-dark rounded mr-2">
-              <div class="pt-5">
-                <div class="icon">
-                  <i><img src="./assets/svg/Ai icon.svg" style="width:5.5rem;"></i>
-                </div>
-                <h3>
-                  AI
-                </h3>
-                <p>
-                  I am a young professional in developing tools using Artificial Intelligence
-                </p>
-              </div>
-            </div>
-            <div class="col-md-4 text-center border border-dark rounded mr-2">
-              <div class="pt-5">
-                <div class="icon">
-                  <i class="fab fa-uncharted fa-10x"></i>
-                </div>
-                <h3>
-                  Software Engineer
-                </h3>
-                <p>
-                  I am a software engineer in different types of languages
-                </p>
-              </div>
-            </div>
-            <div class="col-md-3 text-center border border-dark rounded mr-2">
-              <div class="pt-5">
-                <div class="icon">
-                  <i class="fas fa-microphone-alt fa-10x"></i>
-                </div>
-                <h3>
-                  Audio
-                </h3>
-                <p>
-                  I am not your typical software enigineer. My full specilization is audio and music.
+          <div class="row w-50 mx-auto">
+            <div class="col-md-12 text-justify">
+              <h3 class="text-center">Artificial Intelligence to generate live Algorithmic Dance Music</h3>
+              <p class="text-warp">
 
-                </p>
-              </div>
-            </div>
-            <div class="col-md-1">
+              </p>
             </div>
           </div>
         </div>
       </div>
-      <div class="col-12 p-0 page_container page_off" id="contact" style="display: none;">
-        <div class="container pagesettings ">
-          <div class="row pt-5 pb-5">
-            <div class="col-md-1">
+      <div class="col-xl-12 p-0" id="resume">
+        <div class="container-fluid pagesettings">
+          <div class="row">
+            <div class="col-md-12 text-center">
+              <h1>RESUME</h1>
             </div>
-            <div class="col-md-1">
-              <a onclick="open_page('title_screen')" style="font-size: 2rem;">
-                <i class="fas fa-arrow-left page_back"></i>
-              </a>
-            </div>
-            <div class="col-md-8 text-center">
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-12 p-0" id="contact">
+        <div class="container-fluid pagesettings secondary">
+          <div class="row">
+            <div class="col-md-12 text-center">
               <h1>CONTACT</h1>
             </div>
-            <div class="col-md-2">
-            </div>
           </div>
-          <div class="row">
-            <div class="col-md-1">
-            </div>
-            <div class="col-md-3 text-center border border-dark rounded mr-2">
-              <div class="pt-5">
-                <div class="icon">
-                  <i><img src="./assets/svg/Ai icon.svg" style="width:5.5rem;"></i>
-                </div>
-                <h3>
-                  AI
-                </h3>
-                <p>
-                  I am a young professional in developing tools using Artificial Intelligence
-                </p>
-              </div>
-            </div>
-            <div class="col-md-4 text-center border border-dark rounded mr-2">
-              <div class="pt-5">
-                <div class="icon">
-                  <i class="fab fa-uncharted fa-10x"></i>
-                </div>
-                <h3>
-                  Software Engineer
-                </h3>
-                <p>
-                  I am a software engineer in different types of languages
-                </p>
-              </div>
-            </div>
-            <div class="col-md-3 text-center border border-dark rounded mr-2">
-              <div class="pt-5">
-                <div class="icon">
-                  <i class="fas fa-microphone-alt fa-10x"></i>
-                </div>
-                <h3>
-                  Audio
-                </h3>
-                <p>
-                  I am not your typical software enigineer. My full specilization is audio and music.
-
-                </p>
-              </div>
-            </div>
-            <div class="col-md-1">
+          <div class="row w-50 mx-auto">
+            <div class="col-md-12 text-justify">
+              <p class="text-warp">
+                contact_form
+              </p>
             </div>
           </div>
         </div>
       </div>
+    </div>
+  </div>
+
 </body>
+<footer class="text-center text-lg-start bg-light text-muted">
+  <!-- Section: Social media -->
+  <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+    <!-- Left -->
+    <div class="me-5 d-none d-lg-block">
+      <span>Get connected with us on social networks:</span>
+    </div>
+    <!-- Left -->
+
+    <!-- Right -->
+    <div>
+      <a href="" class="me-4 text-reset">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+      <a href="" class="me-4 text-reset">
+        <i class="fab fa-twitter"></i>
+      </a>
+      <a href="" class="me-4 text-reset">
+        <i class="fab fa-google"></i>
+      </a>
+      <a href="" class="me-4 text-reset">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="" class="me-4 text-reset">
+        <i class="fab fa-linkedin"></i>
+      </a>
+      <a href="" class="me-4 text-reset">
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <!-- Right -->
+  </section>
+</footer>
 <link rel="stylesheet" href="./css/style.css">
+<link rel="stylesheet" href="./css/slider.css">
+<script src="./js/scalar.js"></script>
 <script src="./js/animation.js"></script>
-<script src="./js/draw_title_circle.js"></script>
-<script src="./js/button_functions.js"></script>
+<script src="./js/scrollButtons.js"></script>
+<script src="./js/slider.js"></script>
 
 </html>
