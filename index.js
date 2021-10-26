@@ -9,7 +9,7 @@ const ip = require("ip");
 var ip_address = ip.address();
 
 http.listen(5000, function () {
-    console.log('listening on ' + ip_address + ':5001');
+    console.log('listening on ' + ip_address + ':5000');
 });
 
 app.use(session({
@@ -21,8 +21,3 @@ app.use(fileUpload());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use('/', express.static(__dirname + '/client/'))
-
-
-app.get('/skills', function (req, res) {
-    res.sendFile(__dirname + '/client/pages/skills.html');
-});
