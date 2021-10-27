@@ -6,7 +6,7 @@ const fileUpload = require('express-fileupload');
 const fs = require('fs');
 const ip = require("ip");
 
-var ip_address = ip.address();
+var ip_address = "localhost";//ip.address();
 
 http.listen(5000, function () {
     console.log('listening on ' + ip_address + ':5000');
