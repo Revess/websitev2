@@ -15,47 +15,6 @@
 
 <body onload="start()">
   <nav class="navbar navbar-expand-lg sticky-top navbar_colours navbar navbar-light" id="navbar">
-    <div class="collapse navbar-collapse">
-      <ul class="nav navbar-nav ml-auto">
-        <li class="nav-item">
-          <a style="cursor:pointer;" onclick="scrollAnimation('projects')" class="nav-link">Projects </a>
-        </li>
-        <li class="nav-item">
-          <a style="cursor:pointer;" onclick="scrollAnimation('papers')" class="nav-link">Papers</a>
-        </li>
-      </ul>
-    </div>
-
-    <a class="navbar-brand mx-auto" style="cursor:pointer;" onclick="scrollAnimation('title_container')">Bas Maat</a>
-
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target=".navbar-items"
-      aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation"
-      onclick="setTimeout(function(){titleResize();},250)">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-items nav-collapse-only text-center" id="hidden_element" style="transition: 0.2s;">
-      <ul class="nav navbar-nav">
-        <li class="nav-item active">
-          <a style="cursor:pointer;" onclick="scrollAnimation('projects')" class="nav-link">Projects </a>
-        </li>
-        <li class="nav-item">
-          <a style="cursor:pointer;" onclick="scrollAnimation('papers')" class="nav-link">Papers</a>
-        </li>
-      </ul>
-    </div>
-
-    <div class="collapse navbar-collapse navbar-items text-center" style="transition: 0.2s;">
-      <ul class="nav navbar-nav mr-auto">
-        <li class="nav-item">
-          <a style="cursor:pointer;" onclick="scrollAnimation('resume')" class="nav-link">Resume</a>
-        </li>
-        <li class="nav-item">
-          <a style="cursor:pointer;" onclick="scrollAnimation('contact')" class="nav-link">Contact</a>
-        </li>
-      </ul>
-    </div>
-
   </nav>
 
   <div class="container-fluid" id="title_container" style="position:relative">
@@ -107,7 +66,6 @@
 <script src="./js/slider.js"></script>
 <script src="./js/index.js"></script>
 <script src="./js/scalar.js"></script>
-<script src="./js/onloadParse.js"></script>
 <script src="./js/placepages.js"></script>
 <script src="./js/animation.js"></script>
 <script src="./js/scrollButtons.js"></script>

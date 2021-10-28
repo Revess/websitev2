@@ -17,7 +17,11 @@ app.use(session({
     resave: true,
     saveUninitialized: true
 }));
+
 app.use(fileUpload());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use('/', express.static(__dirname + '/client/'))
+app.use(['/projects/smartlappen', '/projects/AWN', '/projects/ADM', '/projects/lyre', '/projects/studai', '/projects'], express.static(__dirname + '/client/pages/projects/'))
+app.use(['/papers/ADM', '/papers'], express.static(__dirname + '/client/pages/papers/'))
+app.use('/resume', express.static(__dirname + '/client/pages/resume/'))

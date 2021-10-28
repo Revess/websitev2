@@ -1,9 +1,9 @@
-const pages = ["projects", "arrow", "papers", "resume", "contact"]
+const sections = ["projects", "arrow", "papers", "resume", "contact", "navbar"]
 
 $(function () {
     setTimeout(function () {
-        pages.forEach(id => {
-            $("#" + id).load("./pages/" + id + ".html", function () {
+        sections.forEach(id => {
+            $("#" + id).load("./mainsections/" + id + ".html", function () {
             });
         });
     }, 2);
