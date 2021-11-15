@@ -204,3 +204,20 @@ textarea::-webkit-scrollbar-thumb {
 .subnav {
   background-color: white;
 }
+
+.pagedevider {
+  width:90%
+}
+
+.pagesubrow{
+  width:50%;
+}
+
+@media print{
+  .pagesettings, .pagedevider, .pagesubrow{
+    width: 100%;
+  }
+  .pageBreak {
+    page-break-before : auto;
+}
+}
