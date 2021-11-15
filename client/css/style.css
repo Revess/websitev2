@@ -1,6 +1,6 @@
 @font-face {
     font-family: space_mono;
-    src: url(../assets/fonts/SpaceMono-Regular.ttf);
+    src: url(../assets/fonts/Montserrat-Regular.ttf);
   }
 
 html, body {
@@ -214,10 +214,22 @@ textarea::-webkit-scrollbar-thumb {
 }
 
 @media print{
-  .pagesettings, .pagedevider, .pagesubrow{
-    width: 100%;
+  .col-xl-3 {
+    max-width: 33%;
   }
-  .pageBreak {
-    page-break-before : auto;
+  .col-xl-9 {
+    max-width: 66%;
+  }
+
+  body,html{
+    overflow:hidden;
+  }
 }
+
+.skillProgressBarBackground {
+  background-color: rgb(24, 14, 24) !important;
+}
+
+.skillProgressBar{
+  background-color: rgb(235, 235, 235) !important;
 }
