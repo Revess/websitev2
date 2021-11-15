@@ -1,4 +1,4 @@
-const sections = ["projects", "arrow", "papers", "resume", "contact", "navbar"]
+const sections = ["projects", "papers", "resume", "navbar", "title"]
 
 $(function () {
     setTimeout(function () {

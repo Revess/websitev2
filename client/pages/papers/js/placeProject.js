@@ -2,17 +2,13 @@ const projects = ["ADM"]
 var projectSections = ["subnav"]
 
 $(function () {
-    setTimeout(function () {
-        var url = new URL(window.location.href);
-        projects.forEach(project => {
-            if (url.href.split("/").includes(project)) {
-                projectSections.push(project)
+    $("#navbar").load("../../../mainsections/navbar.html", function () {
+        $("#papers").load("../../../mainsections/papers.html", function () {
+            document.querySelectorAll(".pagesettings")[0].classList.remove("secondary");
+            var paperboxes = document.querySelectorAll(".project-box")
+            for (i = 0; i < paperboxes.length; i++) {
+                paperboxes[i].classList.remove("secondary")
             }
-        })
-        projectSections.forEach(id => {
-            $("#" + id).load("./sections/" + id + ".html", function () {
-            });
         });
-        $("#navbar").load("../../../mainsections/navbar.html")
-    }, 2);
+    })
 });

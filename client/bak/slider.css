@@ -1,0 +1,392 @@
+.slider-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.slider-button {
+    font-size: 2rem;
+    width: 2rem;
+    cursor: pointer;
+}
+
+.slider-button-hide {
+    display:none !important;
+}
+
+.cards-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width:100%;
+}
+
+.cards-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50vh;
+    padding: 0px;
+    margin: 0px;
+    width:100%;
+}
+
+.slider-box {
+    width: 50%;
+    height: 100%;
+    box-shadow: 0px 0px 2rem 0px #888888;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 0px;
+    margin: 0px;
+}
+
+.slider-box-fullscreen {
+    position: fixed;
+    top:0px;
+    bottom:0px;
+    width:100%;
+    padding-left:5%;
+    padding-right:5%;
+    overflow:auto;
+    align-items: initial;
+    justify-content: initial;
+    margin:auto;
+}
+
+@media (max-width: 576px) {
+    .slider-box:nth-child(2) p {
+        
+        font-size: 0.8rem;
+    }
+    
+    .slider-box:nth-child(3) p {
+        font-size: 1rem;
+    }
+    
+    .slider-box:nth-child(4) p {
+        font-size: 0.8rem;
+    }
+
+    .slider-box:nth-child(2) h3 {
+        font-size: 1.6rem;
+    }
+    
+    .slider-box:nth-child(3) h3 {
+        font-size: 1.7rem;
+    }
+    
+    .slider-box:nth-child(4) h3 {
+        font-size: 1.6rem;
+    }
+}
+
+@media (min-width: 576px) {
+    .slider-box:nth-child(2) p {
+        font-size: 1rem;
+    }
+    
+    .slider-box:nth-child(3) p {
+        font-size: 1.1rem;
+    }
+    
+    .slider-box:nth-child(4) p {
+        font-size: 1rem;
+    }
+
+    .slider-box:nth-child(2) h3 {
+        font-size: 1.6rem;
+    }
+    
+    .slider-box:nth-child(3) h3 {
+        font-size: 1.7rem;
+    }
+    
+    .slider-box:nth-child(4) h3 {
+        font-size: 1.6rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .slider-box:nth-child(2) p {
+        font-size: 1rem;
+    }
+    
+    .slider-box:nth-child(3) p {
+        font-size: 1.1rem;
+    }
+    
+    .slider-box:nth-child(4) p {
+        font-size: 1rem;
+    }
+
+    .slider-box:nth-child(2) h3 {
+        font-size: 1.7rem;
+    }
+    
+    .slider-box:nth-child(3) h3 {
+        font-size: 1.9rem;
+    }
+    
+    .slider-box:nth-child(4) h3 {
+        font-size: 1.7rem;
+    }
+}
+
+@media (min-width: 992px) {
+    .slider-box:nth-child(2) p {
+        font-size: 1.15rem;
+    }
+    
+    .slider-box:nth-child(3) p {
+        font-size: 1.2rem;
+    }
+    
+    .slider-box:nth-child(4) p {
+        font-size: 1.15rem;
+    }
+
+    .slider-box:nth-child(2) h3 {
+        font-size: 1.7rem;
+    }
+    
+    .slider-box:nth-child(3) h3 {
+        font-size: 1.9rem;
+    }
+    
+    .slider-box:nth-child(4) h3 {
+        font-size: 1.7rem;
+    }
+}
+
+@media (min-width: 1200px) {
+    .slider-box:nth-child(2) p {
+        font-size: 1.2rem;
+    }
+    
+    .slider-box:nth-child(3) p {
+        font-size: 1.25rem;
+    }
+    
+    .slider-box:nth-child(4) p {
+        font-size: 1.2rem;
+    }
+
+    .slider-box:nth-child(2) h3 {
+        font-size: 1.8rem;
+    }
+    
+    .slider-box:nth-child(3) h3 {
+        font-size: 2rem;
+    }
+    
+    .slider-box:nth-child(4) h3 {
+        font-size: 1.8rem;
+    }
+}
+
+.slider-box:nth-last-child(1) {
+    transform: scale(0);
+    width:0%;
+    opacity: 0;
+}
+
+.slider-box:nth-child(1) {
+    transform: scale(0);
+    width:0%;
+    opacity: 0;
+}
+
+.slider-box:nth-child(2) {
+    font-size: 1.2rem;
+    transform: scale(0.75);
+    left:5%;
+    width: 25%;
+    z-index: 1;
+    opacity: 1;
+}
+
+.slider-box:nth-child(3) {
+    transform: scale(1);
+    z-index: 2;
+    opacity: 1;
+}
+
+.slider-box:nth-child(4) {
+    transform: scale(0.75);
+    right:5%;
+    width: 25%;
+    z-index: 1;
+    opacity: 1;
+}
+
+.slider-box:nth-child(5) {
+    transform: scale(0);
+    width:0%;
+    opacity: 0;
+}
+
+.slider-box:nth-child(6) {
+    transform: scale(0);
+    width:0%;
+    opacity: 0;
+}
+
+.card-text-content {
+    text-align: center;
+    width: 75%;
+}
+
+.card-title {
+    padding: 1rem;
+}
+
+.slider-box-hide {
+    display: none;
+}
+
+.move-position1-left {
+    animation: moveP1Left 0.5s ease-in-out;
+}
+.move-position2-left {
+    animation: moveP2Left 0.5s ease-in-out;
+}
+.move-position3-left {
+    animation: moveP3Left 0.5s ease-in-out;
+}
+.move-position4-left {
+    animation: moveP4Left 0.5s ease-in-out;
+}
+
+.move-position0-right {
+    animation: moveP0Right 0.5s ease-in-out;
+}
+.move-position1-right {
+    animation: moveP1Right 0.5s ease-in-out;
+}
+.move-position2-right {
+    animation: moveP2Right 0.5s ease-in-out;
+}
+.move-position3-right {
+    animation: moveP3Right 0.5s ease-in-out;
+}
+
+@keyframes moveP1Left {
+    from {
+        transform: scale(0.75);
+        font-size: 1rem;
+        left:5%;
+        width: 25%;
+        opacity: 1;
+    }
+    to {
+        transform: scale(0);
+        left:0%;
+        width: 0;
+        opacity: 0;
+        font-size: 0rem;
+    }
+}
+
+@keyframes moveP2Left {
+    from {
+        transform: scale(1);
+        left:0%;
+        width: 50%;
+    }
+    to {
+        transform: scale(0.75);
+        left:5%;
+        width: 25%;
+    }
+}
+
+@keyframes moveP3Left {
+    from {
+        transform: scale(0.75);
+        right:5%;
+        width: 25%;
+    }
+    to {
+        transform: scale(1);
+        right:0%;
+        width: 50%;
+    }
+}
+
+@keyframes moveP4Left {
+    from {
+        transform: scale(0);
+        right:0%;
+        width: 0%;
+        opacity: 0;
+    }
+    to {
+        transform: scale(0.75);
+        right:5%;
+        width: 25%;
+        opacity: 1;
+    }
+}
+
+@keyframes moveP0Right {
+    from {
+        transform: scale(0);
+        left:0%;
+        width: 0%;
+        opacity: 0;
+    }
+    to {
+        transform: scale(0.75);
+        left:5%;
+        width: 25%;
+        opacity: 1;
+    }
+}
+
+@keyframes moveP1Right {
+    from {
+        transform: scale(0.75);
+        left:5%;
+        width: 25%;
+    }
+    to {
+        transform: scale(1);
+        left:0%;
+        width: 50%;
+    }
+}
+
+@keyframes moveP2Right {
+    from {
+        transform: scale(1);
+        right:0%;
+        width: 50%;
+    }
+    to {
+        transform: scale(0.75);
+        right:5%;
+        width: 25%;
+    }
+}
+
+@keyframes moveP3Right {
+    from {
+        transform: scale(0.75);
+        right:5%;
+        width: 25%;
+        font-size: 1rem;
+        opacity: 1;
+    }
+    to {
+        transform: scale(0);
+        right:0%;
+        width: 0;
+        font-size: 0rem;
+        opacity: 0;
+    }
+}
